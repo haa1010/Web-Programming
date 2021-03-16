@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>
+        Input Form
+    </title>
+</head>
+<h3>Let us know about your hobby ??</h3>
+<form action="FormHandle.php" method="POST">
+    Name: <input type="text" name="name">
+    StudentID: <input type="text" name="studentid" maxlength="8">
+    <br>
+    <br>
+    Class: <input type="text" name="class" maxlength="100">
+    University: <input type="text" name="uni" maxlength="100">
+    <div>
+        <h4>Hobbies</h4>
+        <div>
+            <input type="checkbox" name="check_list[]" value="Science"> Science
+            <input type="checkbox" name="check_list[]" value="Sport"> Sport
+            <input type="checkbox" name="check_list[]" value="Art"> Art
+            <input type="checkbox" name="check_list[]" value="Game"> Game
+            <br>
+            <input type="checkbox" name="check_list[]" value="Music"> Music
+            <input type="checkbox" name="check_list[]" value="Dancing"> Dancing
+            <input type="checkbox" name="check_list[]" value="Reading"> Reading
+            <input type="checkbox" name="check_list[]" value="Coding"> Coding
+        </div>
+        <input type="submit" value="Submit">
+        <input type="reset" name="Erase and Restart">
+    </div>
+    <!-- <table>
+        <tr>
+            Hobby
+        </tr>
+    </table> -->
+</form>
+
+</html>
