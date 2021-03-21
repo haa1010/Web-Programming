@@ -1,0 +1,76 @@
+
+
+.flex-center{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.blue-background{
+background-color: #029c7c;
+}
+.info{
+    padding-left: 10px;
+}
+.white-color{
+    color:white
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.black-text{
+    color:black;
+    margin-left: 20px;
+}
+.text-bold{
+    font-weight: bold;
+
+}
+.pt-3{
+    padding-top:5px;
+}
+.text-title{
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+.block-icon{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #029c7c;
+    align-items: center;
+    display: flex;
+    vertical-align: center;
+
+
+}
+.fa{
+    color:white;
+
+}
+.fa.fa-graduation-cap,.fa.fa-briefcase,.fa.fa-group{
+    font-size: 20px;
+    align-self: center;
+    padding-left: 7px;
+}
+.inline{
+    display: inline-flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.left,.right{
+    font-size: 20px;
+}
+.pt-5{
+    padding-top: 20px;
+}

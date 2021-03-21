@@ -4,36 +4,59 @@
     <title>
         Input Form
     </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<h3>Let us know about your hobby ??</h3>
-<form action="FormHandle.php" method="POST">
-    Name: <input type="text" name="name">
-    StudentID: <input type="text" name="studentid" maxlength="8">
-    <br>
-    <br>
-    Class: <input type="text" name="class" maxlength="100">
-    University: <input type="text" name="uni" maxlength="100">
-    <div>
-        <h4>Hobbies</h4>
+<div class="background">
+<div class="container">
+    <div class="row flex-center full-height">
         <div>
-            <input type="checkbox" name="check_list[]" value="Science"> Science
-            <input type="checkbox" name="check_list[]" value="Sport"> Sport
-            <input type="checkbox" name="check_list[]" value="Art"> Art
-            <input type="checkbox" name="check_list[]" value="Game"> Game
-            <br>
-            <input type="checkbox" name="check_list[]" value="Music"> Music
-            <input type="checkbox" name="check_list[]" value="Dancing"> Dancing
-            <input type="checkbox" name="check_list[]" value="Reading"> Reading
-            <input type="checkbox" name="check_list[]" value="Coding"> Coding
-        </div>
+<div class=" flex-center-title"><h2>Let us know about your hobby ??</h2></div>
+<form action="FormHandle.php" method="POST">
+    <span class="label">Name: </span><input type="text" name="name">
+    <span class="label"> StudentID: </span><input type="text" name="studentid" maxlength="8">
+    <br>
+    <br>
+    <span class="label">Class: </span><input type="text" name="class" maxlength="100">
+    <span class="label">University:</span> <input type="text" name="uni" maxlength="100">
+    <div class="flex-center">
+      
+        <h4>Hobbies</h4>
+    </div>
+        <div class="input">
+            <div class="fix-width"><input type="checkbox" name="check_list[]" value="Science"> Science</div>
+        <div  class="fix-width"><input type="checkbox" name="check_list[]" value="Sport"> Sport</div>
+            <div class="fix-width">   <input type="checkbox" name="check_list[]" value="Art"> Art</div>
+                <div class="fix-width">   <input type="checkbox" name="check_list[]" value="Game"> Game</div>
+          </div>
+          <div class="input">
+             
+            <div class="fix-width">  <input type="checkbox" name="check_list[]" value="Music"> Music</div>
+                <div class="fix-width">  <input type="checkbox" name="check_list[]" value="Dancing"> Dancing</div>
+                    <div class="fix-width"> <input type="checkbox" name="check_list[]" value="Reading"> Reading</div>
+           <div class="fix-width"> <input type="checkbox" name="check_list[]" value="Coding"> Coding</div>
+     </div>
+    <div class="flex-center mt-3 ">
         <input type="submit" value="Submit">
         <input type="reset" name="Erase and Restart">
+    
     </div>
+
     <!-- <table>
         <tr>
             Hobby
         </tr>
     </table> -->
 </form>
-
+</div>
+</div>
+</div> 
+</div>
 </html>
