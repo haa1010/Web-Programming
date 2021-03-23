@@ -13,7 +13,7 @@
     margin-bottom: 50px;
 }
 .background{
-    background-image: url('./background.jpg');
+    background-image: url('./background.jpeg');
 }
 *{
     color: white;
@@ -55,4 +55,7 @@ input[type=text]{
 }
 .mt-3{
     margin-top: 20px;
+}
+form > .input{
+    padding: .2em .6em .3em;
 }
