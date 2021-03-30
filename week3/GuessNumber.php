@@ -1,8 +1,3 @@
-<html>
-
-<head>
-    <title>Guessing a number</title>
-</head>
 <?php
 session_start();
 if (!isset($_SESSION['ournumber'])) {
@@ -10,6 +5,11 @@ if (!isset($_SESSION['ournumber'])) {
     $_SESSION['ournumber'] = rand(0, 100);
 }
 ?>
+<html>
+
+<head>
+    <title>Guessing a number</title>
+</head>
 
 <body>
     <font size="5" color blue> Try to guess a number from 0 to 100</font>

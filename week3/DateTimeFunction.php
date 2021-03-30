@@ -1,63 +1,63 @@
 <html>
 
 <head>
-    <title>Conditional Test</title>
+    <title>Date Time Function</title>
 </head>
-
 
 <body style="text-align: center; margin-top: 100px">
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET" style="display: inline-block">
         <?php
-        if (array_key_exists("name", $_GET)) {
-            $name = $_GET['name'];
-            $date = $_GET['date'];
-            $month = $_GET['month'];
-            $year = $_GET['year'];
-            $name = $_GET['name'];
-            $hour = $_GET['hour'];
-            $min = $_GET['min'];
-            $second = $_GET['second'];
+        if (array_key_exists("name1", $_GET)) {
+            $name1 = $_GET['name1'];
+            $date1 = $_GET['date1'];
+            $month1 = $_GET['month1'];
+            $year1 = $_GET['year1'];
+            $name2 = $_GET['name2'];
+            $date2 = $_GET['date2'];
+            $month2 = $_GET['month2'];
+            $year2 = $_GET['year2'];
         } else {
-            $date = 1;
-            $month = 1;
-            $year = 2000;
-            $name = '';
-            $hour = 0;
-            $min = 0;
-            $second = 0;
+            $name1 = "";
+            $date1 = 1;
+            $month1 = 1;
+            $year1 = 2000;
+            $name2 = "";
+            $date2 = 1;
+            $month2 = 1;
+            $year2 = 2000;
         }
         ?>
-        <table style="margin: 0 auto;">
-            <h2>Enter your name and select date and time for the appointment</h2>
+        <table>
+            <h2>Enter your name and your DOB</h2>
             <tr>
-                <td>Your name:</td>
-                <td><input type="text" maxlength="50" name="name" value=<?php print($name) ?>></td>
+                <td>Your name 1:</td>
+                <td><input type="text" maxlength="50" name="name1" value=<?php print($name1) ?>></td>
             </tr>
             <tr>
-                <td>Date:</td>
-                <td><select name="date">
+                <td>DOB 1:</td>
+                <td><select name="date1">
                         <?php
                         for ($i = 1; $i <= 31; $i++) {
-                            if ($date == $i)
+                            if ($date1 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
                         }
                         ?>
                     </select>
-                    <select name="month">
+                    <select name="month1">
                         <?php
                         for ($i = 1; $i <= 12; $i++) {
-                            if ($month == $i)
+                            if ($month1 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
                         }
                         ?>
-                    </select><select name="year">
+                    </select><select name="year1">
                         <?php
-                        for ($i = 2000; $i <= 2021; $i++) {
-                            if ($year == $i)
+                        for ($i = 1900; $i <= 2021; $i++) {
+                            if ($year1 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
@@ -67,30 +67,34 @@
                 </td>
             </tr>
             <tr>
-                <td>Time:</td>
-                <td><select name="hour">
+                <td>Your name 2:</td>
+                <td><input type="text" maxlength="50" name="name2" value=<?php print($name2) ?>></td>
+            </tr>
+            <tr>
+                <td>DOB 2:</td>
+                <td><select name="date2">
                         <?php
-                        for ($i = 0; $i <= 23; $i++) {
-                            if ($hour == $i)
+                        for ($i = 1; $i <= 31; $i++) {
+                            if ($date2 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
                         }
                         ?>
                     </select>
-                    <select name="min">
+                    <select name="month2">
                         <?php
-                        for ($i = 0; $i <= 59; $i++) {
-                            if ($min == $i)
+                        for ($i = 1; $i <= 12; $i++) {
+                            if ($month2 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
                         }
                         ?>
-                    </select><select name="second">
+                    </select><select name="year2">
                         <?php
-                        for ($i = 0; $i <= 59; $i++) {
-                            if ($second == $i)
+                        for ($i = 1900; $i <= 2021; $i++) {
+                            if ($year2 == $i)
                                 print("<option selected>$i</option>");
                             else
                                 print("<option>$i</option>");
@@ -98,34 +102,14 @@
                         ?>
                     </select>
                 </td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="submit"></td>
-                <td><input type="reset" value="reset"></td>
             </tr>
         </table>
+        <br>
+        <input type="submit" value="Submit">
+        <br>
         <table>
+            <br>
             <?php
-            function transform($a)
-            {
-                return $a < 10 ? "0" . strval($a) : $a;
-            }
-            function daytime($h, $m, $s, $y, $M, $d, $base = false)
-            {
-                $ex = "";
-                $m = transform($m);
-                $s = transform($s);
-                $M = transform($M);
-                $d = transform($d);
-                if ($base) {
-                    $ex = " AM";
-                    if ($h > 12) {
-                        $h = $h - 12;
-                        $ex = " PM";
-                    }
-                }
-                return "$h:$m:$s$ex, $d/$M/$y";
-            }
 
             function monthToDays($month, $isLeap = false)
             {
@@ -158,16 +142,31 @@
                 } else return $date <= monthToDays($month);
             }
 
-            if (array_key_exists("name", $_GET)) {
-                if (!validateDayMonth($date, $month, $year)) {
-                    print "You chose invalid date!";
+            function dateProcessing($name, $date, $month, $year)
+            {
+                $format =  $date->format('l, F n, Y');
+                $age = $date->diff(date_create('now'))->format('%y');
+                print("$name was born on $format, $age years old. <br>");
+            }
+
+            if (array_key_exists("name1", $_GET)) {
+                if (!validateDayMonth($date1, $month1, $year1)) {
+                    print "$name1 has invalid birthday!";
                     return;
                 }
-                print("Hi $name!<br>");
-                print "You have choose to have an appointment on " . daytime($hour, $min, $second, $year, $month, $date) . "<br>";
-                print("More information<br>");
-                print "In 12 hours, the time and date is " . daytime($hour, $min, $second, $year, $month, $date, true);
-                print "<br>This month has " . date('t', strtotime($date . '-' . $month . '-' . $year)) . " days!";
+                if (!validateDayMonth($date2, $month2, $year2)) {
+                    print "$name2 has invalid birthday!";
+                    return;
+                }
+
+                $date1 = new DateTime($date1 . '-' . $month1 . '-'  . $year1);
+                $date2 = new DateTime($date2 . '-' . $month2 . '-'  . $year2);
+                dateProcessing($name1, $date1, $month1, $year1);
+                dateProcessing($name2, $date2, $month2, $year2);
+
+                $diff = $date1->diff($date2);
+                printf("Day different between 2 birthdays is %s day(s).<br>", $diff->format('%a'));
+                printf("Year different between 2 birthdays is %s year(s).",  $diff->format('%y'));
             }
             ?>
         </table>

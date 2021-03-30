@@ -4,8 +4,8 @@
     <title>Square and Cube</title>
 </head>
 
-<body >
-    <font >Generate Square and Cube</font>
+<body>
+    <font>Generate Square and Cube</font>
     <br>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
         <?php
@@ -23,7 +23,10 @@
                 <td><select name="start">
                         <?php
                         for ($i = 0; $i <= 10; $i++) {
-                            print "<option>$i<option/>";
+                            if ($start == $i)
+                                print("<option selected>$i</option>");
+                            else
+                                print("<option>$i</option>");
                         }
                         ?>
                     </select></td>
@@ -33,7 +36,10 @@
                 <td><select name="end">
                         <?php
                         for ($i = 0; $i <= 20; $i++) {
-                            print "<option>$i<option/>";
+                            if ($end == $i)
+                                print("<option selected>$i</option>");
+                            else
+                                print("<option>$i</option>");
                         }
                         ?>
                     </select></td>
