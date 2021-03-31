@@ -5,6 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class Color {
+// namespace ShapeNS;
+
+class Color
+{
     public $name;
 }

@@ -6,9 +6,8 @@
  * and open the template in the editor.
  */
 
-include "Shape.php";
+include_once "Shape.php";
+// namespace ShapeNS;
 abstract class Polygon extends Shape{
     abstract function getNumberOfSides();
 }
-?>
-

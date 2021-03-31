@@ -5,11 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require 'Shape.php';
+require_once 'Shape.php';
+// namespace ShapeNS;
+
 class Circle extends Shape
 {
     public $radius;
-    public function getArea() {
-        return (pi()*$this->radius*$this->radius);
+    public function getArea()
+    {
+        return (pi() * $this->radius * $this->radius);
     }
 }

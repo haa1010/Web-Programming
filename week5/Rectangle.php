@@ -6,17 +6,19 @@
  * and open the template in the editor.
  */
 
-require 'Polygon.php';
-class Rectangle extends Polygon{
+require_once 'Polygon.php';
+// namespace ShapeNS;
+
+class Rectangle extends Polygon
+{
     public $width;
     public $height;
-    public  function getArea() {
-       
-            return ($this->width*$this->height);
-        
-        
+    public  function getArea()
+    {
+        return ($this->width * $this->height);
     }
-    public function getNumberOfSides() {
+    public function getNumberOfSides()
+    {
         return (4);
     }
 }
