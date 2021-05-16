@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Placemark>
+        <name>Hangg placemark</name>
+        <description>Location of Hang's home</description>
+        <Point>
+            <coordinates>20.895350117522355, 105.85806751466231</coordinates>
+        </Point>
+    </Placemark>
+</kml>

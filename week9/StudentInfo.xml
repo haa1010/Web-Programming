@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<student>
+    <name>
+        <firstname>Hang</firstname>
+        <lastname>Tran</lastname>
+    </name>
+    <dob>10.10.1999</dob>
+    <age>21</age>
+    <studentid>20176748</studentid>
+    <class>TT.CNTT ICT02 K62</class>
+    <school>Hanoi University of Science and Technology</school>
+</student>
