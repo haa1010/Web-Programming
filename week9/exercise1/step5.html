@@ -1,0 +1,535 @@
+<html>
+
+<head>
+    <title>XML Application</title>
+</head>
+
+<body>
+    <h1>XUL</h1>
+    <div id="content">
+        <p> XUL provides user interface bases for a cross platform application.
+            As DHTML was created for web page interface, XUL has been created for
+            interface of applications.</p>
+        <p>XUL was defined to build the user interface of the Mozilla open source
+            browser.<br>
+            The name comes from a character of the Ghostbuster movie.</p>
+        <h2> What is XUL made of?</h2>
+        <p> XUL describes a content with a behavior, then a presentation for this
+            content, and then the interface can be localized for a given country
+            or human language.<br>
+            Components of each level are these:</p>
+        <ol>
+            <li> content level: XUL, XBL, JavaScript,</li>
+            <li> behavior: event handling, </li>
+            <li> presenting: CSS, images,</li>
+            <li> locale: DTD, properties files.<br>
+                The object model may be applied to several levels.</li>
+        </ol>
+        <p> When using XUL, you have to deal with RDF (for templates), XPCom, XPConnect
+            and JavaScript. XBL is optional.</p>
+        <p>Components of XUL:</p>
+        <h3> RDF</h3>
+        <p> The Resource Description Framework, is intended to write XML files
+            that matches the structure of component that use them.<br>
+            It allows, in XUL, to build a structured list from an RDF file by describing
+            just one element.</p>
+        <h3> XBL</h3>
+        <p> XBL means for eXtensible Binding Language.<br>
+            Its goal is to modify tags of XUL, or replace them or add new ones.
+            Thus, to change the interface for an application.<br>
+            The language defines XML elements for widgets, events, properties, methods.</p>
+        <h3> XTF</h3>
+        <p> eXtensible Tag Framework is a replacement to XBL in gecko and thus
+            in XUL as well. It allows to define new XML elements, but in new versions
+            of XUL only. (Firefox 1.5). <br>
+            XTF elements may be written in C. </p>
+        <h3> Overlays</h3>
+        <p> The goal is to split a GUI into small, reusable components.<br>
+            This is a mechanism to add components to a XUL application. Overlay
+            is a set of XUL files used to describe extra content to user interface
+            and adapt the interface at convenience of the user.</p>
+        <h3> The AOM</h3>
+        <p> The Application Object Model is, for a XUL interface, what the Document
+            Object Model is for a HTML page. DOM describes web pages, and AOM describes
+            applications. AOM allows to manipulate objects (widgets) written in
+            XML to build a graphical interface.</p>
+        <h3> XPCom</h3>
+
+        <p> (Cross Platform Component Object Model). Its goal is to use native code
+            from XUL applications, and improve performance. The JavaScript part of a XUL
+            interface may be rewritten in C and compiled to binary and them used with
+            XUL, thanks to XPCom.<br>
+            This is a framework for modular software. XPCom components may be written
+            in any programming language, and used by any language. </p>
+        <h3> XPConnect</h3>
+        <p> Its goal is to allow XUL applications to use compiled libraries.<br>
+            It is an interface for allowing JavaScript programs to use XPCom files.
+            JavaScript objects can use binary objects in a XPCom file, and conversely.</p>
+        <h3> XPInstall</h3>
+        <p> Its goal is installing XUL application from Internet or Intranet.<br>
+            It is an installer for XUL components, working over networks.</p>
+        <h3> XUL templates</h3>
+        <p> The goal is to put data at runtime inside a XUL document.<br>
+            According to Mozilla, a XUL template is "a collection of rules
+            that is used to build XUL and HTML content from one or more RDF datasources".<br>
+            A template describes a content pattern model, and the conditions to
+            apply it. <br>
+            The browser creates the XUL or HTML document by copying the template and filling
+            it with values taken from the RDF datasource.<br>
+        </p>
+        <pre>&lt;template&gt;
+              &lt;rule&gt;
+             &lt;conditions&gt;
+               ...
+             &lt;/conditions&gt;
+             &lt;action&gt;
+               ...
+             &lt;/action&gt;
+              &lt;rule&gt;
+              &lt;rule&gt; .....etc...
+            &lt;/template&gt; </pre>
+        <center>
+            <font color="#999999">Syntax of templates </font>
+        </center>
+        <p>Conditions may be empty or include one or more tests.<br>
+            For each occurrence the set of conditions is matched, the action is performed.</p>
+        <h3>Other components</h3>
+        <p>XUL makes use also of <a href="https://www.xul.fr/en/dom/" target="_top">DOM</a>,
+            HTML, CSS, JavaScript.
+        </p>
+        <h2> How to launch a XUL application</h2>
+
+        <p> You can load a file with a XUL extension from Mozilla (or Firefox) as a
+            HTML page.<br>
+            Some projects I have tested don't work in this way and require a special
+            installation, described below...<br>
+            If XULRunner is installed, it is launched from within the command window,
+            with a configuration file as parameter. For example, <b>demo.XUL</b>
+            has a configuration file named <b>demo.ini</b>:</p>
+        <pre> xulrunner demo.ini</pre>
+        <p>The format of the configuration file is given in the XULRunner archive.</p>
+        <h2> How to use XUL as graphical interface for a program</h2>
+        <ol>
+            <li><b> </b> You must know the available XUL widgets.</li>
+            <li> The definitions (XUL, RDF and other files) must stay in the chrome
+                directory of Mozilla.</li>
+            <li> Your application must be registered in the chrome install file.</li>
+            <li> The application is started by a command as: mozilla -chrome followed
+                by the path of the main XUL file.</li>
+        </ol>
+        <p> See among the <a href="#resources">sites below</a> for more details.</p>
+        <pre>mozilla
+            |--chrome
+               |--mygui
+              |--content  // XUL, RDF, js files
+              |--locale   // dtd text files
+              |--skin // CSS files&lt;
+            </pre>
+        <center>
+            <font color="#999999">Tree of XUL GUI files</font>
+        </center>
+
+        <h3> The framework</h3>
+        <p> The development environment based upon XUL to make Mozilla applications, it is made of these parts:</p>
+        <ul>
+            <li> XUL: (XML User-interface Language) description of the user interface.</li>
+            <li> CSS (Cascading Style Sheet) personalizing the appearance.</li>
+            <li> JavaScript: programming the interface.</li>
+            <li> XBL (eXtensible Binding Language): creating reusable XUL components.</li>
+            <li> XPCom/XPConnect: interfacing XPFE with binary code (C++ or other).</li>
+            <li> XUL Templates: framework to import data.</li>
+            <li> RDF (Resource Description Framework) stores and retrieves data.</li>
+            <li> DTD may be used for foreign localization.</li>
+            <li> XPInstall: standard installer for XPFE applications.</li>
+        </ul>
+        <h2> XUL or XAML?</h2>
+        <p> XUL is multi-platform an run natively, while XAML requires .NET or
+            a compatible environment as Mono.<br>
+            Specifically, XAML uses class names as tags and their property as XML attributes.
+            So, XML becomes a class, as in C Sharp, easier to implement, but more limited.<br>
+            XUL uses XPCom to extend JavaScript, while code is inserted directly
+            into xaml.<br>
+            And XUL is interpreted and has bitmap images, while XAML is compiled and vector
+            based. <br>
+            HTML tag may be integrated directly into a XUL source, while XAML use its
+            own tags, equivalent to those of HTML.<br>
+            To conclude, coding XAML is simpler, but it does not run natively. <br>
+            This page <a href="https://www.xul.fr/comparison-user-interface-markup-languages.php" target="_top">compares
+                XUL and XAML</a> and all other XML interface languages.</p>
+        <h3>Drawbacks of XUL</h3>
+        <ul>
+            <li> The main drawback is the lack or message when errors occurs. The
+                interface just does not display.</li>
+            <li> Using RDF to fill widgets is rather difficult.</li>
+            <li> Using XPCom, XPConnect is more difficult again.</li>
+        </ul>
+        <h2> Specifications</h2>
+        <p> XUL relies on these specifications form W3C: XML 1, HTML 4.0, CSS
+            2, DOM 2.<br>
+            And <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/"
+                target="_top">ECMAScript
+                1.5</a> from ECMA.<br>
+            The XUL format is defined by Mozilla.</p>
+
+
+    </div>
+    <h1>EPUB</h1>
+    <div>
+        <h2>1.Introduction<br />
+        </h2>
+        <p>The epub format is an open standard for e-books created by the
+            International Digital Publishing Forum (<a href="http://idpf.org/">IDPF</a>).<br />
+            The EPUB format has gained some popularity as a vendor-independent
+            XML-based e-book format. EPUB is designed for reflowable content<span>, </span>
+            that can adapt its presentation to the reader device<span>, although EPUB
+                now also supports fixed-layout content. </span><br />
+        </p>
+        <ul>
+            <li> EPUB 2 provides all the formatting and layout capabilities of XHTML
+                1.1 and CSS2. </li>
+            <li>EPUB 3 officially became a standard in late October 2011.The recent
+                EPUB 3 defines profiles of HTML5, SVG, and CSS for use for enhanced
+                Publications.</li>
+        </ul>
+        <p></p>
+        <p></p>
+        <br />
+        <h2>2. EPUB3 Features</h2>
+        <h3>2.1 Packaging</h3>
+        <p>An EPUB Publication is transported as a single file (a "portable
+            document") that contains:<br />
+        </p>
+        <ul>
+            <li>a Package Document (OPF file) which specifies all the Publication's
+                constituent content documents and their required resources, defines a
+                reading order  and associates Publication-level metadata and navigation
+                information.
+                <ul>
+                    <li>A metadata element including and/or referencing metadata
+                        applicable to the entire Publication and particular resources within
+                        it.</li>
+                    <li>A manifest element: identifies (via IRI) and describes (via MIME
+                        media type) the set of resources that constitute the <a
+                            style="color: black; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(210, 210, 210); "
+                            title="EPUB Publication (or Publication)"
+                            href="http://idpf.org/epub/30/spec/epub30-publications.html#gloss-epub-publication"
+                            class="glossterm">EPUB Publication</a>.</li>
+                    <li>A spine element : defines the default reading order of the
+                        Publication. (An ordered list of <a
+                            style="color: black; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(210, 210, 210); "
+                            title="Publication Resource"
+                            href="http://idpf.org/epub/30/spec/epub30-publications.html#gloss-publication-resource-cmt-or-foreign"
+                            class="glossterm">Publication Resource</a>s (<a
+                            href="http://idpf.org/epub/30/spec/epub30-publications.html#confreq-spine-itemtypes"
+                            class="link"></a><a
+                            style="color: black; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(210, 210, 210); "
+                            title="EPUB Content Document"
+                            href="http://idpf.org/epub/30/spec/epub30-publications.html#gloss-content-document-epub"
+                            class="glossterm">EPUB Content Document</a>s).</li>
+                    <li><span
+                            style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">A
+                            Bindings element de</span><span
+                            style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">fines
+                            a set of custom handlers for media types not supported by EPUB3.</span><span
+                            style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">
+                            If the Reading System cannot support the specific media type, it
+                            could use scripting fallback if supported.</span><span
+                            style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; "></span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li> all Content Documents<br />
+            </li>
+            <li>all other required resources for processing the Publication. <br />
+            </li>
+        </ul>
+        <p>The OCF Container is packaged into a physical single ZIP file containing:
+        </p>
+        <ul>
+            <li> Mime Type file: <code>application/epub+zip</code>.</li>
+            <li>META-INF folder<em> (container file </em><span>which points to<span
+                        dtx-highlight-backgroundcolor="magenta" id="dtx-highlighting-item"> the </span>location of<span
+                        dtx-highlight-backgroundcolor="magenta" id="dtx-highlighting-item"> the </span>.opf
+                    file)<em>,</em></span><em>
+                    signatures, encryption,</em><i> rights</i>, are<em> </em>xml files </li>
+            <li> OEBPS <span><span><span dtx-highlight-backgroundcolor="blue" id="dtx-highlighting-item"></span><span
+                            dtx-highlight-backgroundcolor="lime" id="dtx-highlighting-item"></span></span><span
+                        dtx-highlight-backgroundcolor="magenta" id="dtx-highlighting-item">
+                    </span>folder stores<span dtx-highlight-backgroundcolor="magenta" id="dtx-highlighting-item">
+                        the </span><span>book content<span dtx-highlight-backgroundcolor="lime"
+                            id="dtx-highlighting-item"> </span>.</span></span>(opf, ncx,
+                html, svg, png, css, etc. files)  <br />
+            </li>
+        </ul>
+        <p>see <a href="http://idpf.org/epub/30/spec/epub30-ocf.html#example">OCF
+                example</a><br />
+        </p>
+        <h3>2.2. Navigation</h3>
+        <ul>
+            <li>Reading order:  multiple resources that may be navigated and consumed
+                in some specific order (obvious reading order, logical progression).
+                (spine)<br />
+            </li>
+            <li>Navigation document: a special XHTML Content Document called the EPUB
+                Navigation Document (END), which uses the HTML5 nav element to define
+                navigation information. It replaces the former NCX documents.<br />
+            </li>
+        </ul>
+        <h3>2.3. Linking</h3>
+        <p>The EPUB Canonical Fragment Identifier (<a href="http://idpf.org/epub/linking/cfi/epub-cfi.html">epubcfi</a>)
+            specification defines a standardized method for linking into a
+            publication. It uses fragment identifiers extended with a similar as
+            Shorthand XPointer construct but to a location within an EPUB Publication.
+        </p>
+        <p>example: book.epub#epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/3:10)</p>
+        <p></p>
+        <h3>2.4. Metadata</h3>
+        <p>The Package Document includes a dedicated metadata section for general
+            information about the Publication, allowing titles, authors, identifiers
+            (mainly based on Dublin Core). A meta element also permits refinement by
+            meta element subexpressions.</p>
+        <p>The Package Document also allows a Unique Identifier to be established
+            for a Publication ( ex: ISBN+date)</p>
+        <p><br />
+        </p>
+        <h3><br />
+        </h3>
+        <p><br />
+        </p>
+        signatures file: Contains digital signatures for various assets.
+        <ul>
+            <li>encryption.xml: Contains information about the encryption of
+                Publication resources. (This file is required if font obfuscation is
+                used.)</li>
+            <li>metadata: Used to store metadata about the container.</li>
+            <li>rights: Used to store information about digital rights.</li>
+            <li><br />
+            </li>
+        </ul>
+        <p></p>
+        <p>@@@@ XHTML Content Documents also include the means of annotating
+            document markup with rich metadata, making them more semantically
+            meaningful and useful both for processing and accessibility purposes
+            (Semantic Inflection [ContentDocs30]).</p>
+        <h3>2.5. Content Documents</h3>
+        <p>Content Documents e are XHTML (defined by a profile of HTML5) or SVG
+            documents, etc., that describe the readable content of a Publication and
+            reference associated media resources (e.g., images, audio and video
+            clips).</p>
+        <h3>2.6. Rendering and CSS </h3>
+        Content presentation should adapt to the User rather than the User having to
+        adapt to a particular presentation of content. Reflowable content.<br />
+        <ul>
+            <li>EPUB 3 defines a profile of CSS based on CSS 2.1, together with
+                capabilities defined by various CSS3 Modules and several additional
+                specific properties.</li>
+            <li>CSS3 properties were selected based on their current level of support
+                in Web browsers. It supports both horizontal and vertical layout and
+                both left-to-right and right-to-left writing,</li>
+            <li><span
+                    style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">CSS
+                    Profile includes <code>@media</code> and <code>@import</code> rules
+                    with media queries as defined in the Media Queries specification.</span><span
+                    style="color: rgb(0, 0, 0); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; "></span>
+            </li>
+        </ul>
+        <h3>2.7. Fonts</h3>
+        <ul>
+            <li>support for two font formats:  OpenType and WOFF . Also supports both
+                obfuscated and regular font resources to accommodate font licensing
+                restrictions for many commercially-available fonts.</li>
+        </ul>
+        <p></p>
+        <h3>2.8. Multimedia</h3>
+        <ul>
+            <li>support for  audio and video embedded in the HTML5 audio and video
+                elements. <span></span></li>
+            <li><span>Reading Systems should supp<span dtx-highlight-backgroundcolor="magenta"
+                        id="dtx-highlighting-item">or</span>t at least one of the </span><span
+                    class="biblioref">MP4/H.264</span> and <span class="biblioref">WebM/VP8</span>
+                video codecs. For audio .mp3 support required, .mp4 support is
+                recommended<br />
+            </li>
+            <li>support for Inline raster<span> and </span>vector images embedded in
+                the HTML5 img element (JPEG, PNG, SVG, etc.).</li>
+            <li>Allows Media Overlay Documents (pre-recorded narration synchronized
+                with the text of a Content Document. </li>
+        </ul>
+        <span></span><span><span><span><span dtx-highlight-backgroundcolor="lime"
+                        id="dtx-highlighting-item"></span></span></span></span>
+        <ul>
+            <li> MP4 /H.264 or WebM VP8 Codecs</li>
+        </ul>
+        <h3>2.9. Text-to-speech</h3>
+        <p>EPUB 3 provides text-to-speech (TTS) facilities for controlling aspects
+            of speech synthesis, such as pronunciation, prosody and voice
+            characteristics: pronunciation lexicons using the W3C PLS format, Inline
+            SSML Phonemes and CSS Speech Features.</p>
+        <h3>2.10. Scripting</h3>
+        <p>EPUB strives to treat content declaratively, but it supports scripting as
+            defined in HTML5 and SVG (Note:scripting support is optional for Reading
+            Systems and may be disabled for security reasons).<br />
+        </p>
+        <h3>2.11 Internationalisation (Global Language Support)</h3>
+        <p>EPUB 3 offer features for global Language:</p>
+        <ul>
+            <li>support for content flow direction to be globally specified for all
+                Content Documents language-specific metadata
+                (page-progression-direction)</li>
+            <li>support for bidirectional content rendering: (bdi, bdo elements) </li>
+            <li>support for new CSS3 modules enableling typography for many different
+                languages and cultures (support for vertical writing)</li>
+            <li>support the embedding of fonts for accurate rendering of text content,
+                and ensures specific characters and glyphs are embedded for proper
+                display.</li>
+            <li>support for Text-to-speech PLS documents and SSML attributes</li>
+            <li>supports UTF-8, allowing for internationalized file.</li>
+        </ul>
+        <h3>2.12. Accessibility</h3>
+        <p>A major goal of EPUB3 is to facilitate content accessibility with a
+            variety of features</p>
+        <ul>
+            <li>Navigation: END provides a mechanism to include a human- and
+                machine-readable global navigation layer in the Publication (nav
+                element) , thereby ensuring increased usability and accessibility</li>
+            <li>Semantic Markup: support for a number of HTML5 elements intended to
+                make markup more semantically meaningful (e.g., section, nav, aside) .
+                It also introduces the epub:type attribute, which is meant to be
+                functionally equivalent to the W3C Role Attribute. This attribute allows
+                any element in an XHTML Content Document to include additional
+                information about its purpose and meaning within the work, using
+                controlled vocabularies and terms. </li>
+            <li>Dynamic Layouts: dynamic layout content is intended to be formatted on
+                the fly rather than being typeset in a paginated manner in advance
+                (i.e., expecting a particular sized "page").</li>
+            <li>Aural Renditions of content text-to-speech. Media Overlays provide the
+                ability to synchronize the text and audio content. Both are important
+                for accessibility.</li>
+            <li>Fallbacks to provide alternate renditions of a Publication</li>
+            <li>Scripting: trigger element added to the EPUB HTML5 profile enables
+                image or textual elements to act as controls for audio and video
+                playback (for example, to start, stop and pause playback). This element
+                eliminates the common use of scripting to include similar functionality.<br />
+                The switch element provides a means for Authors to tailor the content
+                displayed to Users without having to resort to scripted solutions.<br />
+            </li>
+        </ul>
+        <br />
+        <h2>3. EPUB3 Relation to main W3C Technologies</h2>
+        <p></p>
+        <p> </p>
+        <h3>3.1. HTML5<br />
+        </h3>
+        The XHTML Content Documents are based on HTML5, and inherits all definitions
+        of semantics, structure and processing behaviors from the HTML5
+        specification. <br />
+        EPUB3 adds the following extensions to the HTML5 document model:<br />
+        <ul>
+            <li>The <code>epub:type</code> attribute inflects semantics on the element
+                on which it appears. It is intended to be functionally equivalent to the
+                W3C Role Attribute but with restrictions.</li>
+            <li>The <code>epub:switch</code> element an XML fragment to be
+                conditionally inserted into the content model of an XHTML Content
+                Document. using the  <code>case</code> element for alternate
+                representation of the same content.</li>
+            <li>The <code>epub:trigger</code> element enables the creation of
+                markup-defined user interfaces for controlling multimedia objects, such
+                as audio and video playback, in both scripted and non-scripted contexts.</li>
+            <li><code>ssml:ph</code> attribute to specifies a phonemic/phonetic
+                pronunciation of the text represented by the element to which the
+                attribute is attached along with the ssml:alphabet attribute specifies
+                which phonemic/phonetic pronunciation alphabet is used in the value of
+                the <code>ssml:ph</code> attribute</li>
+            <li>support embedded MathML<a
+                    style="color: rgb(0, 0, 255); text-decoration: none; font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "
+                    title="Mathematical Markup Language (MathML) Version 3.0"
+                    href="http://idpf.org/epub/30/spec/epub30-contentdocs.html#refMathML" class="biblioref"></a> but
+                limit its usage to a restricted subset of
+                the full MathML markup language.</li>
+            <li>support the embedding of SVG 1.1 <a
+                    style="font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "
+                    href="http://www.w3.org/TR/SVG/intro.html#TermSVGDocumentFragment" class="link"></a>by
+                reference (from an img or object element) and by inclusion (embedding
+                via direct inclusion of the <code>svg:svg</code> element)  </li>
+        </ul>
+        <div dir="LTR" id="Section6">
+            <h3>3.2. CSS Style sheets<br />
+            </h3>
+            <p>The  EPUB 3 CSS Profile is based on CSS 2.1  with the following
+                exceptions (fixed value of the position property and 
+                the direction and unicode-bidi properties -Authors should use
+                appropriate HTML5 markup to express directionality information instead)</p>
+            <p></p>
+            <p>EPUB 3 CSS Profile includes:</p>
+            <ul>
+                <li><code>@font-face</code> rules and descriptors as defined in the CSS
+                    Fonts Module Level 3</li>
+                <li><code>@media</code> and <code>@import</code> rules with media
+                    queries as defined in the Media Queries</li>
+                <li><code>@namespace</code> rule defined in CSS Namespaces<br />
+                </li>
+                <li>all  features defined in the CSS Multi-column Layout Module</li>
+                <li>all of the features defined in the CSS Writing Modes Module Level 3
+                    (except  direction and unicode-bidi properties)</li>
+                <li> <code>-epub-</code> prefixed versions of some properties from the
+                    CSS3 Speech Module and from the CSS Text Level 3</li>
+                <li><code>-epub-ruby-position</code> from the CSS Ruby Module</li>
+            </ul>
+            <p></p>
+            EPUB 3 CSS Profile adds new constructs in addition to the standard values
+            defined for the display property of CSS2.1 ( new
+            values <code>oeb-page-head</code> and <code>oeb-page-foot</code>)
+            <h3>3.3. SVG<br />
+            </h3>
+            <p>EPUB3 restricts the content model of <a
+                    style="color: black; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(210, 210, 210); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "
+                    title="SVG Content Document"
+                    href="http://idpf.org/epub/30/spec/epub30-contentdocs.html#gloss-content-document-epub-svg"
+                    class="glossterm">SVG 1.1 for Content Document</a>s and SVG embedded
+                in XHTML Content Documents<a
+                    style="font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "
+                    title="2.1.4.2 Embedded SVG"
+                    href="http://idpf.org/epub/30/spec/epub30-contentdocs.html#sec-xhtml-svg" class="link"></a> as
+                follows:</p>
+            <ul>
+                <li>The SVG Animation Elements and Animation event attributes must not
+                    occur.</li>
+            </ul>
+            <h3>3.4. MathML</h3>
+            MathML markup in XHTML Content Documents must conform to the constraints
+            expressed in the MathML specification with the following restrictions:<br />
+            <ul>
+                <li>The <code>m:math</code> element must contain only Presentation
+                    MathML</li>
+                <li> Content MathML may be included within MathML markup in XHTML
+                    Content Documents, and, when present, must occur within <code>anm:annotation-xml </code>child
+                    element of an <code>m:semantics</code> element.</li>
+            </ul>
+            <h3>3.5. Scripting</h3>
+            <a style="color: black; text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(210, 210, 210); font-family: arial, helvetica, sans-serif; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "
+                title="EPUB Content Document"
+                href="http://idpf.org/epub/30/spec/epub30-contentdocs.html#gloss-content-document-epub"
+                class="glossterm">EPUB Content Document</a>s may contain scripting using
+            the facilities defined for this in the respective underlying
+            specifications HTML5 and SVG<br />
+        </div>
+        <p></p>
+        <h3>3.6. Media Overlay Document</h3>
+        EPUB 3 allows Media Overlay Documents to describe the timing for the
+        pre-recorded audio narration and how it relates to the EPUB Content Document
+        markup. The file format for Media Overlays is defined as a subset of SMIL.
+        <h3>3.7.Text-to-Speech (TTS)</h3>
+        <p> SSML is the language used for assisting Text-to-Speech (TTS) engines in
+            generating synthetic speech. Although SSML is designed as a standalone
+            document type, it also defines semantics suitable for use within other
+            host languages.EPUB3 recasts the SSML 1.1 phoneme element as two
+            attributes — <code>ssml:ph</code> and <code>ssml:alphabet </code>— and
+            makes them available within EPUB XHTML Content Documents.<br />
+            <br />
+        </p>
+    </div>
+</body>
+
+</html>

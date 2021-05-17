@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title> Compare XML Schema</title>
+</head>
+
+<body>
+    <h1>Compare XML Schema</h1>
+    <h3>Document Type Definitions</h3>
+
+    <h4>Advantages</h4>
+
+    Of the primary three languages, DTDs are the only ones that can be defined inline. That is, the DTD can actually be
+    embedded directly into the document. <br>
+
+    DTDs can define more than merely the content model. It can define data elements that can be used in the document,
+    much like a C or C++ preprocessor may have #defines that are used internally.<br>
+
+    The DTD language is compact and highly readable, though it does require some experience to understand.
+
+    <h4>Disadvantages</h4>
+
+    The primary disadvantage to DTDs is their weakness of specificity. The content models for DTDs are very basic,
+    particularly compared to the other two languages.<br>
+
+    Overuse of DTD-defined elements may make a document illegible or incomprehensible without the associated DTD.
+    Additionally, there are several XML processors that, typically for ease-of-implementation reasons, do not understand
+    DTDs. As such, if DTD-defined entities are being used, these XML processors will not recognize them.
+    <br>
+    The DTD concept for XML was borrowed from the SGML DTD concept. As such, the construct could not be changed when XML
+    was extended with namespaces. As such, DTDs are namespace unaware.
+
+    <h3>W3C XML Schema</h3>
+
+    <h4>Advantages over DTDs</h4>
+
+    Compared to DTDs, W3C XML Schemas are exceptionally powerful. They provide much greater specificity than DTDs could.
+    They are namespace aware, and provide support for types.
+    <br>
+    W3C XML Schema is written in XML itself, and therefore has a schema of its own (appropriately, written in W3C XML
+    Schema).
+    <br>
+    W3C XML Schema has a large number of built-in and derived data types. These are specified by the W3C XML Schema
+    specification, so all W3C XML Schema validators and processors must support them.
+    <br>
+    Due to the nature of the schema language, after an XML document is validated, the entire XML document, both content
+    and structure, can be expressed in terms of the schema itself. This functionality, known as Post-Schema-Validation
+    Infoset (PSVI), can be used to transform the document into a hierarchy of typed objects that can be accessed in a
+    programming language through a neutral interface.
+
+    <h3>RELAX NG</h3>
+
+    Both RELAX NG and W3C XML Schema allow for similar mechanisms of specificity. Both allow for a degree of modularity
+    in their languages, going so far as to being able to split the schema into multiple files. And both of them are, or
+    can be, defined in an XML language.
+
+    <h4>Advantages</h4>
+
+    RELAX NG lacks any analog to PSVI.
+    <br>
+    Additionally, RELAX NG has slightly poorer specificity in certain respects. For example, it is not possible to
+    define a specific number or range of repetitions of patterns under RELAX NG; under W3C XML Schema, this is possible.
+    <br>
+    Also, RELAX NG has no ability to apply default attribute data to an element's list of attributes, while W3C XML
+    Schema does. [While annotations in RELAX NG can support default attribute values, the RELAX NG specification does
+    not mandate that a validator provide this ability to modify an XML infoset as part of validation. The WXS
+    specification does mandate this behavior. An additional specification associated with RELAX NG does provide this
+    ability. See [http://www.oasis-open.org/committees/relax-ng/compatibility.html#default-value Relax NG DTD
+    Compatibility (default value)] .]
+    <br>
+    RELAX NG has only two built-in data types (string and token), while W3C XML Schema has far more.
+    <br>
+    W3C XML Schema has a formal mechanism for attaching a schema to an XML document.
+
+    <h4>Disadvantages</h4>
+
+    W3C XML Schema does not allow for the definition of which element, or elements, may be valid root elements of a
+    document. As such, all elements defined in the schema can be a root element. A well-defined list of root elements
+    (and equally importantly, elements that cannot be roots) is a useful feature for a schema, particularly for
+    languages that are intended to be split into multiple files and included from one to another. It allows easy
+    validation of the separate parts, as well as not validating invalid root elements.
+
+</body>
+
+</html>
