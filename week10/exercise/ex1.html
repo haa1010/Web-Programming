@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Colors</title>
+</head>
+<body>
+    <a href="#" id="red" class="color">RED </a>|
+    <a href="#" id="green" class="color">GREEN </a>|
+    <a href="#" id="blue" class="color">BLUE </a>
+    <hr>
+    <p id="text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis lacinia tortor, sed convallis ipsum aliquam eget. Suspendisse vel eros nec nisl placerat lobortis ac sed nunc. Morbi a odio massa. Phasellus laoreet, enim et porttitor lacinia, turpis sapien cursus nunc, eget sodales est libero vel mauris. Praesent efficitur sem et mollis volutpat. Nam semper, eros ultricies efficitur vestibulum, lacus eros ultricies mi, eu auctor mauris magna et ex. Suspendisse ut risus rutrum, bibendum nisi in, pellentesque libero. Sed vitae mi in massa vehicula tristique non blandit odio. Praesent facilisis nisl vitae lorem dapibus ornare. Suspendisse ut ligula at urna aliquam consectetur. Praesent suscipit eros eget consectetur gravida. Proin volutpat efficitur ultricies. Proin ut rhoncus lacus. Praesent ut quam id odio ullamcorper consectetur vitae quis enim. Morbi diam odio, sollicitudin quis volutpat a, porttitor sed tortor. Suspendisse efficitur pharetra tellus at dictum.
+    </p>
+</body>
+<script>
+    let colorLinks = document.getElementsByClassName("color");
+    let txt = document.getElementById("text");
+    for (let colorLn of colorLinks) {
+        colorLn.onmouseover = function (e) {
+            txt.style.color = this.textContent.toLocaleLowerCase();
+        };
+
+        colorLn.onmouseout = function (e) {
+            txt.style.color = "black";
+        };
+    }
+</script>
+</html>
