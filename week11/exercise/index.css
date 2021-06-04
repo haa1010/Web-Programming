@@ -1,0 +1,30 @@
+.choose_prod {
+    width: 100%;
+    background-color: darkgray;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.prod_detail {
+    margin-bottom: 20px;
+}
+.title {
+    color: blue;
+    font-size: 40px;
+}
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+.infor_purchase table {
+    border-collapse: collapse;
+}
+td, th{
+    border: 1px solid black;
+    margin: 0px;
+}
+.information td div {
+    height: 100px;
+}
+.submit_add {
+    margin-top: 10px;
+}
